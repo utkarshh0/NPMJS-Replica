@@ -10,6 +10,7 @@ const SearchPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [loading, setLoading] = useState(true)
+    
     // Effect to trigger search when URL query changes
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
@@ -100,6 +101,7 @@ const SearchPage = () => {
                 </div>
             )}
 
+            {/* When SearchTerm is not found */}
             {searchResults.length === 0 && (
                 <div className='h-screen'>
                     <p className="text-center text-gray-600">No results found. Try a different search term.</p>

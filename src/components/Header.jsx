@@ -1,7 +1,7 @@
 
 import { Link, useNavigate } from 'react-router-dom';
 import { BsFillSuitHeartFill } from "react-icons/bs";
-
+import PropTypes from 'prop-types'
 
 const Header = ({ searchTerm, setSearchTerm, onSearch }) => {
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Header = ({ searchTerm, setSearchTerm, onSearch }) => {
                 <a href="#" className="hover:text-gray-500">Documentation</a>
             </div>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between pt-4">
-                <div className="flex items-center justify-between px-4 md:w-auto">
+                <div className="flex items-center justify-between px-4 md:w-auto my-2">
                     <Link to="/">
                         <svg className="w-20" viewBox="0 0 780 250">
                             <path fill="#231F20" d="M240,250h100v-50h100V0H240V250z M340,50h50v100h-50V50z M480,0v200h100V50h50v150h50V50h50v150h50V0H480z M0,200h100V50h50v150h50V0H0V200z"></path>
@@ -36,7 +36,7 @@ const Header = ({ searchTerm, setSearchTerm, onSearch }) => {
                 </div>
 
                 {/* Search form */}
-                <form onSubmit={handleSubmit} className="relative flex-grow md:mx-4">
+                <form onSubmit={handleSubmit} className="relative flex-grow md:mx-4 my-2">
                     <input
                         type="text"
                         value={searchTerm}
@@ -70,3 +70,9 @@ const Header = ({ searchTerm, setSearchTerm, onSearch }) => {
 };
 
 export default Header;
+
+Header.propTypes = {
+    searchTerm: PropTypes.string.isRequired, 
+    setSearchTerm: PropTypes.func.isRequired , 
+    onSearch : PropTypes.func.isRequired
+}

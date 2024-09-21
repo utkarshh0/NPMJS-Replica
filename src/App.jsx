@@ -5,7 +5,6 @@ import Footer from "./components/Footer"
 import Home from "./pages/Home"
 import Search from './pages/Search'
 import PackageDetail from './pages/PackageDetail'
-import PackageVersion from './pages/PackageVersion'
 
 export default function App (){
   return(
@@ -32,7 +31,6 @@ const AppContent = () => {
         <Route index path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/package/:packageName" element={<PackageDetail />} />
-        {/* <Route path="/package/:packageName/v/:version" element={<PackageVersion />} /> */}
       </Routes>
       <Footer />
       <hr className='h-3 bg-gradient-to-r from-[#FB8115] via-[#C72622] to-[#DA28D7]' />

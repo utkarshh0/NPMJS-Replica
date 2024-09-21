@@ -45,12 +45,13 @@ const PackageDetailPage = () => {
         fetchPackageInfo();
     }, [packageName]);
 
-    if (isLoading) return <p className="text-center">Loading...</p>;
-    if (error) return <p className="text-center text-red-600">{error}</p>;
+    if (isLoading) return <div className="h-screen w-screen"><p className="text-center">Loading...</p></div>;
+    if (error) return <div className="h-screen w-screen"><p className="text-center text-red-600">{error}</p></div>
     if (!packageInfo) return null;
 
     const latestVersion = packageInfo['dist-tags'].latest;
 
+    // Handle clicks on PackageDetails Tab
     const handleClick = (button) => {
         setVisibleContent({
           readme: button === 'readme',
@@ -61,7 +62,16 @@ const PackageDetailPage = () => {
         });
       };
 
-      console.log(packageInfo.versions)
+      const handleCopy = () => {
+        navigator.clipboard.writeText(`npm i ${packageInfo._id}`)
+          .then(() => {
+            alert('Copied to clipboard!')
+          })
+          .catch(err => {
+            console.error('Failed to copy: ', err);
+          });
+      };
+
     return (
         <div className="w-full md:w-5/6 mx-auto px-2 py-4">
             <h1 className="text-xl font-bold">{packageInfo.name}</h1>
@@ -76,47 +86,39 @@ const PackageDetailPage = () => {
                 <Button 
                     label="Readme" 
                     Icon={IoDocumentTextOutline} 
-                    bgHoverColor="bg-[#FFF5D8]" 
-                    borderColor="border-[#FFCD3A]" 
-                    textColor="text-[#886701]"
                     handleClick={handleClick}
+                    styles={`hover:bg-[#FFF5D8] border-[#FFCD3A] text-[#886701] ${visibleContent.readme && `bg-[#FFF5D8]`}`}
                     visibleContent={visibleContent}
                 />
                 <Button 
                     label="Code" 
                     Icon={FaRegFileZipper} 
-                    bgHoverColor="bg-[#FAEBEB]" 
-                    borderColor="border-[#BC3433]" 
-                    textColor="text-[#BC3433]"
+                    styles="hover:bg-[#FAEBEB] border-[#BC3433] text-[#BC3433]"
                     visibleContent={visibleContent}
                 />
-                <Button 
+               <Button 
                     label="Dependency" 
                     Icon={FiBox} 
-                    bgHoverColor="bg-[#FAEBF9]" 
-                    borderColor="border-[#782075]" 
-                    textColor="text-[#782075]"
+                    styles="hover:bg-[#FAEBF9] border-[#782075] text-[#782075]"
                     visibleContent={visibleContent}
                 />
                 <Button 
                     label="Dependents" 
                     Icon={BsBoxes} 
-                    bgHoverColor="bg-[#EDE6FF]" 
-                    borderColor="border-[#290089]" 
-                    textColor="text-[#290089]"
+                    styles="hover:bg-[#EDE6FF] border-[#290089] text-[#290089]"
                     visibleContent={visibleContent}
                 />
                 <Button 
                     label="Versions" 
                     Icon={VscVersions} 
-                    bgHoverColor="bg-[#D4EEF9]" 
-                    borderColor="border-[#146C91]" 
-                    textColor="text-[#146C91]"
                     handleClick={handleClick}
+                    styles={`hover:bg-[#D4EEF9] border-[#146C91] text-[#146C91] ${visibleContent.versions && `bg-[#D4EEF9]`}`}
                     visibleContent={visibleContent}
                 />
             </div>
             <div className='flex flex-col md:flex-row justify-center items-center'>
+                
+                {/* Selected Tab Information */}
                 <div className='w-full md:w-4/6 p-4'>
                     {visibleContent.readme &&
                         <div className='w-full'>
@@ -129,7 +131,8 @@ const PackageDetailPage = () => {
                         </div>
                     }
                 </div>
-
+                
+                {/* Package Information */}
                 <div className="w-full md:w-2/6 p-4">
                     <p className="text-gray-600 font-semibold my-2">Install</p>
                     <div className="p-2 border flex justify-between tracking-wider">
@@ -137,7 +140,7 @@ const PackageDetailPage = () => {
                             <MdOutlineKeyboardArrowRight />
                             <p className="text-gray-500">npm i {packageInfo._id}</p>
                         </div>
-                        <button><FaRegCopy /></button>
+                        <button onClick={handleCopy}><FaRegCopy /></button>
                     </div>
                     
                     <Badge

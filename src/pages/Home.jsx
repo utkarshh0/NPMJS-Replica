@@ -39,8 +39,9 @@ export default function Home(){
                     </div>
                 </div>
             </section>
+
             <section className="h-screen w-screen overflow-hidden flex justify-center">
-                <div className="w-2/5 p-12 flex flex-col items-center">
+                <div className="w-full md:w-2/5 p-12 flex flex-col items-center">
                     <img className="w-28 my-4" src={img} alt="" />
                     <p className="text-4xl text-center font-bold my-4">Bring the best of open source to you, your team, and your company</p>
                     <p className="my-4 text-center">Relied upon by more than 17 million developers worldwide, npm is committed to making JavaScript development elegant, productive, and safe. The free npm Registry has become the center of JavaScript code sharing, and with more than two million packages, the largest software registry in the world. Our other tools and services take the Registry, and the work you do around it, to the next level.</p>

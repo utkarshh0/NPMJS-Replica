@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const Footer = () => {
     return (
         <footer className="w-screen bg-white mt-10 border-t p-12">
-            <div className="w-full flex flex-col md:flex-row">
+            <div className="w-full flex flex-col  md:flex-row">
                 <div className="w-full md:w-1/12">
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col items-center md:items-start gap-5 my-2">
                         <img
                             src="https://avatars.githubusercontent.com/u/6078720?s=200&v=4"
                             alt="Npm logo"
@@ -20,7 +20,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="w-full md:w-9/12 flex flex-col md:flex-row justify-between">
+                <div className="w-full md:w-9/12 flex flex-col md:flex-row justify-center items-center md:items-start justify-between space-y-4">
                     <div className="flex flex-col space-y-4 md:text-left">
                         <h2 className="text-lg font-bold text-xl text-gray-800">Support</h2>
                         <ul className="space-y-4">
